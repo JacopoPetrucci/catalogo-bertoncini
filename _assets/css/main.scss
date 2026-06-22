@@ -3,6 +3,15 @@
 
 @import "minima";
 
+body {
+  font-family: 'Aptos', light;
+  color: #1a1a1a;
+}
+
+h1, h2, h3 {
+  font-family: 'Aptos', light;
+  font-weight: 400;
+}
 .opera-row {
   cursor: pointer;
   transition: background 0.1s;
