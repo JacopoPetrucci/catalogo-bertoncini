@@ -1,0 +1,411 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500&display=swap');
+
+  .cifre-root {
+    font-family: 'Inter', var(--font-sans);
+    color: var(--color-text-primary);
+    padding: 0;
+  }
+
+  .header-band {
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+    padding: 1.5rem 0 1.25rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 12px;
+  }
+
+  .eyebrow {
+    font-family: 'IBM Plex Mono', var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    margin: 0 0 6px;
+  }
+
+  .opera-title {
+    font-family: 'Playfair Display', var(--font-serif);
+    font-size: 38px;
+    font-weight: 400;
+    margin: 0;
+    letter-spacing: -0.01em;
+    line-height: 1;
+  }
+
+  .opera-subtitle {
+    font-family: 'IBM Plex Mono', var(--font-mono);
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    margin: 8px 0 0;
+  }
+
+  .badge-set {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+  }
+
+  .badge {
+    font-family: 'IBM Plex Mono', var(--font-mono);
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+
+  .badge-arch {
+    background: #f5e6d3;
+    color: #7a3d10;
+    border: 0.5px solid #d4a574;
+  }
+
+  .badge-year {
+    background: var(--color-background-secondary);
+    color: var(--color-text-secondary);
+    border: 0.5px solid var(--color-border-tertiary);
+  }
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1px;
+    background: var(--color-border-tertiary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    margin: 1.25rem 0;
+  }
+
+  .meta-cell {
+    background: var(--color-background-primary);
+    padding: 14px 16px;
+  }
+
+  .meta-label {
+    font-family: 'IBM Plex Mono', var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    margin: 0 0 4px;
+  }
+
+  .meta-value {
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0;
+    color: var(--color-text-primary);
+  }
+
+  .section-title {
+    font-family: 'IBM Plex Mono', var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    margin: 1.5rem 0 0.75rem;
+    padding-bottom: 6px;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+  }
+
+  .note-text {
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--color-text-secondary);
+    margin: 0;
+    border-left: 2px solid #c8873a;
+    padding-left: 14px;
+  }
+
+  .timeline {
+    position: relative;
+    margin: 1rem 0;
+  }
+
+  .timeline-line {
+    position: absolute;
+    top: 22px;
+    left: 0;
+    right: 0;
+    height: 0.5px;
+    background: var(--color-border-tertiary);
+  }
+
+  .timeline-nodes {
+    display: flex;
+    gap: 0;
+    justify-content: space-between;
+    position: relative;
+  }
+
+  .tnode {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    flex: 1;
+  }
+
+  .tnode-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid var(--color-border-secondary);
+    background: var(--color-background-primary);
+    margin-bottom: 8px;
+    transition: background 0.15s, border-color 0.15s;
+    position: relative;
+    z-index: 1;
+  }
+
+  .tnode:hover .tnode-dot, .tnode.active .tnode-dot {
+    background: #c8873a;
+    border-color: #c8873a;
+  }
+
+  .tnode-year {
+    font-family: 'IBM Plex Mono', var(--font-mono);
+    font-size: 10px;
+    color: var(--color-text-secondary);
+    margin-bottom: 2px;
+  }
+
+  .tnode-label {
+    font-size: 11px;
+    color: var(--color-text-secondary);
+    text-align: center;
+    max-width: 90px;
+    line-height: 1.3;
+  }
+
+  .tnode:hover .tnode-label, .tnode.active .tnode-label {
+    color: var(--color-text-primary);
+  }
+
+  .doc-panel {
+    margin-top: 1rem;
+    background: var(--color-background-secondary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-md);
+    padding: 1rem 1.25rem;
+    min-height: 72px;
+    transition: opacity 0.15s;
+  }
+
+  .doc-panel-title {
+    font-size: 13px;
+    font-weight: 500;
+    margin: 0 0 4px;
+  }
+
+  .doc-panel-meta {
+    font-family: 'IBM Plex Mono', var(--font-mono);
+    font-size: 11px;
+    color: var(--color-text-secondary);
+    margin: 0 0 8px;
+  }
+
+  .doc-panel-desc {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .link-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 1.25rem;
+  }
+
+  .doc-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    padding: 6px 14px;
+    border: 0.5px solid var(--color-border-secondary);
+    border-radius: var(--border-radius-md);
+    background: var(--color-background-primary);
+    color: var(--color-text-primary);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.12s;
+  }
+
+  .doc-link:hover {
+    background: var(--color-background-secondary);
+  }
+
+  .doc-link-accent {
+    border-color: #c8873a;
+    color: #7a3d10;
+    background: #fdf6ee;
+  }
+
+  .source-note {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 0.5px solid var(--color-border-tertiary);
+    font-family: 'IBM Plex Mono', var(--font-mono);
+    font-size: 10px;
+    color: var(--color-text-secondary);
+    letter-spacing: 0.05em;
+  }
+
+  .source-note a {
+    color: #c8873a;
+    text-decoration: none;
+  }
+</style>
+
+<div class="cifre-root">
+  <h2 class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">Scheda opera: Cifre di Mario Bertoncini — catalogo interattivo con documenti d'archivio</h2>
+
+  <div class="header-band">
+    <div>
+      <p class="eyebrow">Catalogo opere pianistiche · Mario Bertoncini</p>
+      <h1 class="opera-title">Cifre</h1>
+      <p class="opera-subtitle">per pianoforti ed un numero variabile di esecutori</p>
+    </div>
+    <div class="badge-set">
+      <span class="badge badge-arch">AdK Berlin · Lascito MB</span>
+      <span class="badge badge-year">1964 — 1967</span>
+    </div>
+  </div>
+
+  <div class="meta-grid">
+    <div class="meta-cell">
+      <p class="meta-label">Organico</p>
+      <p class="meta-value">Pianoforti (n var.)</p>
+    </div>
+    <div class="meta-cell">
+      <p class="meta-label">Composizione</p>
+      <p class="meta-value">1964–1967</p>
+    </div>
+    <div class="meta-cell">
+      <p class="meta-label">Tecnica</p>
+      <p class="meta-value">Sfregamento di sagole</p>
+    </div>
+    <div class="meta-cell">
+      <p class="meta-label">Prima esecuzione</p>
+      <p class="meta-value">da definire</p>
+    </div>
+    <div class="meta-cell">
+      <p class="meta-label">Fondo archivistico</p>
+      <p class="meta-value">Akademie der Künste</p>
+    </div>
+  </div>
+
+  <p class="section-title">Note critiche</p>
+  <p class="note-text">
+    <em>Cifre</em> segna un momento decisivo nella ricerca di Bertoncini sul pianoforte come oggetto fisico. Per la prima volta il compositore ottiene suoni continui tramite lo sfregamento di sagole legate alle corde dello strumento, sovvertendo il principio percussivo del pianoforte e aprendolo a una dimensione gestuale e scultorea. L'organico variabile e la molteplicità degli esecutori riflettono l'influenza dell'ambiente fluxus e dell'informale musicale che Bertoncini frequentava in quegli anni tra Roma, Darmstadt e Berlino.
+  </p>
+
+  <p class="section-title">Genesi del documento — fonti archivistiche (AdK Berlin)</p>
+  <div class="timeline">
+    <div class="timeline-line"></div>
+    <div class="timeline-nodes" id="tl">
+      <div class="tnode active" data-idx="0">
+        <div class="tnode-dot"></div>
+        <span class="tnode-year">1964</span>
+        <span class="tnode-label">Primo schizzo</span>
+      </div>
+      <div class="tnode" data-idx="1">
+        <div class="tnode-dot"></div>
+        <span class="tnode-year">1965</span>
+        <span class="tnode-label">Nota tecnica sagole</span>
+      </div>
+      <div class="tnode" data-idx="2">
+        <div class="tnode-dot"></div>
+        <span class="tnode-year">1966</span>
+        <span class="tnode-label">Partitura ms. (vers. A)</span>
+      </div>
+      <div class="tnode" data-idx="3">
+        <div class="tnode-dot"></div>
+        <span class="tnode-year">1967</span>
+        <span class="tnode-label">Partitura ms. (vers. B)</span>
+      </div>
+      <div class="tnode" data-idx="4">
+        <div class="tnode-dot"></div>
+        <span class="tnode-year">1967</span>
+        <span class="tnode-label">Corrispondenza</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="doc-panel" id="doc-panel">
+    <p class="doc-panel-title" id="dp-title">Primo schizzo autografo</p>
+    <p class="doc-panel-meta" id="dp-meta">AdK Berlin, Lascito Bertoncini · ms. · 1964 · 2 ff.</p>
+    <p class="doc-panel-desc" id="dp-desc">Annotazioni a matita su carta da musica rigata. Il documento mostra la prima concettualizzazione del gesto-suono tramite sagole: grafia incerta e correzioni fitte indicano una fase ancora esplorativa. [Sostituire con trascrizione/descrizione reale dal tuo sopralluogo all'archivio]</p>
+  </div>
+
+  <p class="section-title">Risorse collegate</p>
+  <div class="link-row">
+    <a class="doc-link doc-link-accent" onclick="sendPrompt('Mostrami come strutturare la scheda per un documento scannerizzato di Cifre')">
+      <i class="ti ti-file-text" aria-hidden="true"></i> Visualizza documento (esempio)
+    </a>
+    <a class="doc-link">
+      <i class="ti ti-player-play" aria-hidden="true"></i> Audio (da aggiungere)
+    </a>
+    <a class="doc-link">
+      <i class="ti ti-brand-youtube" aria-hidden="true"></i> Video (da aggiungere)
+    </a>
+    <a class="doc-link" onclick="sendPrompt('Quali altri pezzi per pianoforte di Bertoncini potrebbero essere messi in relazione con Cifre?')">
+      <i class="ti ti-arrows-right-left" aria-hidden="true"></i> Opere correlate ↗
+    </a>
+  </div>
+
+  <p class="source-note">
+    Fonte archivistica: Akademie der Künste, Berlin · Lascito Mario Bertoncini ·
+    <a href="https://archiv.adk.de/bigobjekt/5958" target="_blank">archiv.adk.de/bigobjekt/5958</a>
+    · Consultato [inserire data del tuo sopralluogo]
+  </p>
+</div>
+
+<script>
+  const docs = [
+    {
+      title: "Primo schizzo autografo",
+      meta: "AdK Berlin, Lascito Bertoncini · ms. · 1964 · 2 ff.",
+      desc: "Annotazioni a matita su carta da musica rigata. Il documento mostra la prima concettualizzazione del gesto-suono tramite sagole: grafia incerta e correzioni fitte indicano una fase ancora esplorativa. [Sostituire con descrizione reale dal tuo sopralluogo]"
+    },
+    {
+      title: "Nota tecnica sulle sagole",
+      meta: "AdK Berlin, Lascito Bertoncini · ms. · 1965 · 1 f.",
+      desc: "Foglio di istruzioni scritto a mano in cui Bertoncini descrive il procedimento per fissare le sagole alle corde. Accompagnato da un diagramma schematico della tastiera. [Sostituire con descrizione reale]"
+    },
+    {
+      title: "Partitura manoscritta — versione A",
+      meta: "AdK Berlin, Lascito Bertoncini · ms. · 1966 · 8 ff.",
+      desc: "Prima stesura completa della partitura. La notazione è mista: simboli convenzionali integrati da grafemi propri che indicano l'azione del gesto sulle corde. Numerose correzioni interlineari. [Sostituire con descrizione reale]"
+    },
+    {
+      title: "Partitura manoscritta — versione B",
+      meta: "AdK Berlin, Lascito Bertoncini · ms. · 1967 · 10 ff.",
+      desc: "Versione definitiva con organico esplicitato e indicazioni per l'esecuzione. Rispetto alla versione A, la notazione gestuale è più sviluppata e sistematizzata. [Sostituire con descrizione reale]"
+    },
+    {
+      title: "Corrispondenza (lettera)",
+      meta: "AdK Berlin, Lascito Bertoncini · ms. · 1967 · 1 f.",
+      desc: "Lettera a mittente/destinatario da identificare, in cui Bertoncini menziona la composizione e le difficoltà tecniche legate alla costruzione del set di sagole necessario all'esecuzione. [Sostituire con dati reali: mittente, destinatario, data precisa]"
+    }
+  ];
+
+  document.getElementById('tl').addEventListener('click', function(e) {
+    const node = e.target.closest('.tnode');
+    if (!node) return;
+    document.querySelectorAll('.tnode').forEach(n => n.classList.remove('active'));
+    node.classList.add('active');
+    const idx = parseInt(node.dataset.idx);
+    const d = docs[idx];
+    document.getElementById('dp-title').textContent = d.title;
+    document.getElementById('dp-meta').textContent = d.meta;
+    document.getElementById('dp-desc').textContent = d.desc;
+  });
+</script>
