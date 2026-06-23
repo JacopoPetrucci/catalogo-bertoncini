@@ -31,7 +31,10 @@ body.home-page::before {
 }
 
 .site-header {
-  background-color: transparent;
+  background-color: #000000;
+  background-image: url('/catalogo-bertoncini/assets/img/bertoncini.jpg');
+  background-size: cover;
+  background-position: center top;
   border-top: 3px solid #000000;
   border-bottom: none;
   min-height: 70px;
@@ -40,7 +43,6 @@ body.home-page::before {
   justify-content: flex-start;
   padding-left: 30px;
   position: relative;
-  z-index: 2;
 
   &::before {
     content: '';
@@ -133,17 +135,26 @@ body.home-page::before {
 .home-hero {
   position: relative;
   min-height: calc(100vh - 73px);
-  background: transparent;
-  z-index: 1;
+  background-color: #000000;
+  background-image: url('/catalogo-bertoncini/assets/img/bertoncini.jpg');
+  background-size: cover;
+  background-position: center top;
 }
 
 .home-overlay {
-  display: none;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0) 25%,
+    rgba(0, 0, 0, 0.5) 50%,
+    rgba(0, 0, 0, 0) 100%
+  );
 }
 
 .home-content {
   position: relative;
-  z-index: 2;
+  z-index: 1;
   padding: 60px 30px;
 }
 
