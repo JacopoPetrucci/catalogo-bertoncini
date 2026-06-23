@@ -4,21 +4,23 @@
   {%- include head.html -%}
 
   <body>
+    <div class="{% if page.layout == 'home' %}page-wrapper-home{% endif %}">
 
-    {%- include header.html -%}
+      {%- include header.html -%}
 
-    <main class="page-content" aria-label="Content">
-      {%- if page.full_width -%}
-        {{ content }}
-      {%- else -%}
-        <div class="wrapper">
+      <main class="page-content" aria-label="Content">
+        {%- if page.full_width -%}
           {{ content }}
-        </div>
-      {%- endif -%}
-    </main>
+        {%- else -%}
+          <div class="wrapper">
+            {{ content }}
+          </div>
+        {%- endif -%}
+      </main>
 
-    {%- include footer.html -%}
+      {%- include footer.html -%}
 
+    </div>
   </body>
 
 </html>

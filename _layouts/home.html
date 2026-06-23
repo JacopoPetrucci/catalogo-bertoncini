@@ -2,17 +2,19 @@
 layout: default
 ---
 
-<div class="home-hero">
+<div class="home-bg">
   <div class="home-overlay"></div>
-  <div class="home-content">
-    <div class="opere-list">
-      {% assign opere_sorted = site.opere | sort: "anno" %}
-      {% for opera in opere_sorted %}
-      <a class="opera-card" href="{{ opera.url | relative_url }}">
-        <span class="opera-card-title">{{ opera.title }}</span>
-        <span class="opera-card-sub">{{ opera.sottotitolo }} · {{ opera.anno }}</span>
-      </a>
-      {% endfor %}
+  <div class="home-hero">
+    <div class="home-content">
+      <div class="opere-list">
+        {% assign opere_sorted = site.opere | sort: "anno" %}
+        {% for opera in opere_sorted %}
+        <a class="opera-card" href="{{ opera.url | relative_url }}">
+          <span class="opera-card-title">{{ opera.title }}</span>
+          <span class="opera-card-sub">{{ opera.sottotitolo }} · {{ opera.anno }}</span>
+        </a>
+        {% endfor %}
+      </div>
     </div>
   </div>
 </div>

@@ -8,6 +8,14 @@
    ============================= */
 
 
+.page-wrapper-home {
+  background-image: url('/catalogo-bertoncini/assets/img/bertoncini.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-color: #0a0a0a;
+  position: relative;
+}
+
 body.home-page {
   background-image: url('/catalogo-bertoncini/assets/img/bertoncini.jpg');
   background-size: cover;
@@ -21,7 +29,7 @@ body.home-page::before {
   position: fixed;
   inset: 0;
   background: linear-gradient(
-    to right,
+    to left,
     rgba(0, 0, 0) 25%,
     rgba(0, 0, 0, 0.5) 50%,
     rgba(0, 0, 0, 0) 100%
@@ -31,10 +39,7 @@ body.home-page::before {
 }
 
 .site-header {
-  background-color: #000000;
-  background-image: url('/catalogo-bertoncini/assets/img/bertoncini.jpg');
-  background-size: cover;
-  background-position: center top;
+  background-color: transparent;
   border-top: 3px solid #000000;
   border-bottom: none;
   min-height: 70px;
@@ -43,21 +48,12 @@ body.home-page::before {
   justify-content: flex-start;
   padding-left: 30px;
   position: relative;
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 0;
-  }
-
-  .wrapper {
-    position: relative;
-    z-index: 1;
-  }
+  z-index: 2;
 }
 
+.home-bg {
+  position: relative;
+}
 
 .site-title {
   display: inline-flex;
@@ -135,26 +131,25 @@ body.home-page::before {
 .home-hero {
   position: relative;
   min-height: calc(100vh - 73px);
-  background-color: #000000;
-  background-image: url('/catalogo-bertoncini/assets/img/bertoncini.jpg');
-  background-size: cover;
-  background-position: center top;
+  background: transparent;
 }
 
 .home-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    to right,
+    to left,
     rgba(0, 0, 0) 25%,
     rgba(0, 0, 0, 0.5) 50%,
     rgba(0, 0, 0, 0) 100%
   );
+  z-index: 1;
+  pointer-events: none;
 }
 
 .home-content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   padding: 60px 30px;
 }
 
