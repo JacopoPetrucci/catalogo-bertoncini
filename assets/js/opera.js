@@ -80,9 +80,13 @@ document.addEventListener('DOMContentLoaded', function () {
   // Waveform reale, derivata dal contenuto dell'audio
   const canvas = document.getElementById('waveform-canvas');
   if (canvas && waveformDiv) {
+    const barWidth = 2;
+    const barGap = 2;
+    const W = waveformDiv.offsetWidth || 600;
+    const bars = Math.max(40, Math.floor(W / (barWidth + barGap)));
+
     const drawWaveform = (peaks) => {
       const dpr = window.devicePixelRatio || 1;
-      const W = waveformDiv.offsetWidth || 600;
       const H = waveformDiv.offsetHeight || 48;
       canvas.width = W * dpr;
       canvas.height = H * dpr;
@@ -92,19 +96,25 @@ document.addEventListener('DOMContentLoaded', function () {
       ctx.scale(dpr, dpr);
 
       const maxPeak = Math.max(...peaks) || 1;
-      const barW = W / peaks.length - 1;
-      ctx.fillStyle = 'rgba(240, 236, 228, 0.35)';
+      const step = W / peaks.length;
+      ctx.lineCap = 'round';
+      ctx.lineWidth = barWidth;
+      ctx.strokeStyle = 'rgba(240, 236, 228, 0.45)';
       peaks.forEach((p, i) => {
-        const h = Math.max(2, (p / maxPeak) * H * 0.9);
-        ctx.fillRect(i * (barW + 1), (H - h) / 2, barW, h);
+        const x = i * step + step / 2;
+        const h = Math.max(barWidth, (p / maxPeak) * H * 0.85);
+        ctx.beginPath();
+        ctx.moveTo(x, (H - h) / 2);
+        ctx.lineTo(x, (H + h) / 2);
+        ctx.stroke();
       });
     };
 
-    const computePeaks = (audioBuffer, bars) => {
+    const computePeaks = (audioBuffer, barCount) => {
       const data = audioBuffer.getChannelData(0);
-      const blockSize = Math.floor(data.length / bars);
+      const blockSize = Math.floor(data.length / barCount);
       const peaks = [];
-      for (let i = 0; i < bars; i++) {
+      for (let i = 0; i < barCount; i++) {
         const start = i * blockSize;
         let sum = 0;
         for (let j = 0; j < blockSize; j++) {
@@ -122,10 +132,10 @@ document.addEventListener('DOMContentLoaded', function () {
         const actx = new AudioCtx();
         return actx.decodeAudioData(buf);
       })
-      .then(audioBuffer => drawWaveform(computePeaks(audioBuffer, 150)))
+      .then(audioBuffer => drawWaveform(computePeaks(audioBuffer, bars)))
       .catch(() => {
-        // Fallback: barre piatte se l'analisi dell'audio non è disponibile
-        drawWaveform(new Array(150).fill(1));
+        // Fallback: linea piatta se l'analisi dell'audio non è disponibile
+        drawWaveform(new Array(bars).fill(1));
       });
   }
 

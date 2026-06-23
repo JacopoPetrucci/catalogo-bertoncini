@@ -299,7 +299,7 @@
 
 .footer-inner {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: stretch;
   gap: 12px;
 }
@@ -338,15 +338,6 @@
   }
 }
 
-.footer-box-right {
-  text-align: right;
-  width: fit-content;
-  max-width: none;
-  align-self: flex-end;
-  z-index: 2;
-  position: relative;
-}
-
 .footer-name {
   font-family: 'Nunito', sans-serif;
   font-size: 0.7rem;
@@ -358,8 +349,7 @@
   transition: left 0.35s ease;
 }
 
-.footer-email,
-.footer-desc {
+.footer-email {
   font-family: 'Nunito', sans-serif;
   font-size: 0.65rem;
   font-weight: 200;
@@ -372,8 +362,7 @@
 }
 
 .footer-box:hover .footer-name,
-.footer-box:hover .footer-email,
-.footer-box:hover .footer-desc {
+.footer-box:hover .footer-email {
   color: #000000;
 }
 
@@ -503,7 +492,7 @@
   align-items: center;
   gap: 12px;
   flex-shrink: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: transparent;
   border: 0.5px solid rgba(255, 255, 255, 0.12);
   border-radius: 4px;
   padding: 8px 14px;
