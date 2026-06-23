@@ -9,7 +9,7 @@
 
 .site-header {
   background-color: #000000;
-  border-top: 3px solid #ffffff;
+  border-top: 3px solid #000000;
   border-bottom: none;
   min-height: 70px;
   display: flex;
@@ -116,7 +116,7 @@
   inset: 0;
   background: linear-gradient(
     to left,
-    rgba(0, 0, 0, 0.75) 25%,
+    rgb(0, 0, 0) 50%,
     rgba(0, 0, 0, 0.5) 50%,
     rgba(0, 0, 0, 0) 100%
   );
