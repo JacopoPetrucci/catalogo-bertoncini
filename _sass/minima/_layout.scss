@@ -8,6 +8,8 @@
   min-height: 70px;
   display: flex;
   align-items: center;
+  justify-content: flex-start;
+  padding-left: 30px;
 }
 
 .site-title {
@@ -37,7 +39,7 @@
   }
 
   &:hover {
-    color: #000000 !important;
+    color: #ff0000 !important;
     border-color: #ffffff;
 
     &::before {
