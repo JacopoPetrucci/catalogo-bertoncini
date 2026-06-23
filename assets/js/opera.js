@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const modal = document.getElementById('materiale-modal');
 
   if (materialeButtons.length && modal) {
-    const modalTitle = modal.querySelector('.materiale-modal-title');
     const modalBody = modal.querySelector('.materiale-modal-body');
     const modalClose = modal.querySelector('.materiale-modal-close');
     const modalOverlay = modal.querySelector('.materiale-modal-overlay');
@@ -34,7 +33,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const closeModal = () => modal.classList.remove('open');
 
     const openModal = (path, type, label) => {
-      modalTitle.textContent = label;
       modalBody.innerHTML = '';
 
       if (['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg'].includes(type)) {

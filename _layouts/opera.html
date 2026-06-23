@@ -16,15 +16,6 @@ layout: default
   <div class="opera-page-inner">
 
     <div class="partitura-area">
-      <div class="materiali-side materiali-left">
-        {% for m in page.materiali %}
-          {% assign mod = forloop.index0 | modulo: 2 %}
-          {% if mod == 0 %}
-          <button class="materiale-btn" data-path="{{ m.path | relative_url }}" data-type="{{ m.type }}" data-label="{{ m.label }}"><span>{{ m.label }}</span></button>
-          {% endif %}
-        {% endfor %}
-      </div>
-
       <div class="partitura-slider">
         <button class="slider-btn slider-prev" aria-label="Precedente">&#8592;</button>
         <div class="partitura-slides">
@@ -39,10 +30,7 @@ layout: default
 
       <div class="materiali-side materiali-right">
         {% for m in page.materiali %}
-          {% assign mod = forloop.index0 | modulo: 2 %}
-          {% if mod == 1 %}
-          <button class="materiale-btn" data-path="{{ m.path | relative_url }}" data-type="{{ m.type }}" data-label="{{ m.label }}"><span>{{ m.label }}</span></button>
-          {% endif %}
+        <button class="materiale-btn" data-path="{{ m.path | relative_url }}" data-type="{{ m.type }}" data-label="{{ m.label }}"><span>{{ m.label }}</span></button>
         {% endfor %}
       </div>
     </div>
@@ -75,7 +63,6 @@ layout: default
   <div class="materiale-modal-overlay"></div>
   <div class="materiale-modal-content">
     <button class="materiale-modal-close" aria-label="Chiudi">&times;</button>
-    <div class="materiale-modal-title"></div>
     <div class="materiale-modal-body"></div>
   </div>
 </div>
