@@ -11,7 +11,8 @@ layout: default
         {% for opera in opere_sorted %}
         <a class="opera-card" href="{{ opera.url | relative_url }}">
           <span class="opera-card-title">{{ opera.title }}</span>
-          <span class="opera-card-sub">{{ opera.sottotitolo }} · {{ opera.anno }}</span>
+          <span class="opera-card-sub">{{ opera.sottotitolo }}</span>
+          <span class="opera-card-anno">{{ opera.anno }}</span>
         </a>
         {% endfor %}
       </div>

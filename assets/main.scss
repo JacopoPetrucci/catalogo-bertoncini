@@ -22,7 +22,7 @@
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    to right,
+    to left,
     rgba(0, 0, 0) 25%,
     rgba(0, 0, 0, 0.5) 50%,
     rgba(0, 0, 0, 0) 100%
@@ -169,11 +169,11 @@ body.home-page::before {
 }
 
 .opera-card {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
   align-items: flex-end;
   text-align: right;
-  gap: 3px;
+  gap: 0 20px;
   width: 100%;
   padding: 14px 30px;
   border: 0.5px solid rgba(255, 255, 255, 0.15);
@@ -212,7 +212,6 @@ body.home-page::before {
   color: #ffffff;
   position: relative;
   z-index: 1;
-  display: block;
   transition: color 0.3s ease;
 }
 
@@ -225,7 +224,18 @@ body.home-page::before {
   color: rgba(255, 255, 255, 0.5);
   position: relative;
   z-index: 1;
-  display: block;
+  text-align: right;
+}
+
+opera-card-anno {
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 200;
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.5);
+  position: relative;
+  z-index: 1;
+  text-align: right;
 }
 
 .opera-card:hover .opera-card-title {
