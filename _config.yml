@@ -15,3 +15,6 @@ collections:
   opere:
     output: true
     permalink: /opere/:name/
+
+header_pages:
+  - index.markdown
