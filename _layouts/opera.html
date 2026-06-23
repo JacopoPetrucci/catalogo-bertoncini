@@ -2,41 +2,36 @@
 layout: default
 ---
 
-<div class="opera-page" style="background-image: url('{{ page.sfondo }}')">
+<div class="opera-page" style="background-image: url('{{ page.sfondo | relative_url }}')">
   <div class="opera-page-overlay"></div>
+
+  <div class="opera-header-card">
+    <span class="opera-card-title">{{ page.title }}</span>
+    <span class="opera-card-sub">{{ page.sottotitolo }}</span>
+    <span class="opera-card-anno">{{ page.anno }}</span>
+  </div>
 
   <div class="opera-page-inner">
 
-    <!-- RETTANGOLO TITOLO (replica homepage) -->
-    <div class="opera-header-card">
-      <span class="opera-card-title">{{ page.title }}</span>
-      <span class="opera-card-sub">{{ page.sottotitolo }}</span>
-      <span class="opera-card-anno">{{ page.anno }}</span>
-    </div>
-
-    <!-- SLIDER PARTITURA -->
     <div class="partitura-slider">
       <button class="slider-btn slider-prev" aria-label="Precedente">&#8592;</button>
       <div class="partitura-slides">
         {% for img in page.partiture %}
         <div class="partitura-slide {% if forloop.first %}active{% endif %}">
-          <img src="{{ img }}" alt="Partitura {{ page.title }} — pagina {{ forloop.index }}">
+          <img src="{{ img | relative_url }}" alt="Partitura {{ page.title }} — pagina {{ forloop.index }}">
         </div>
         {% endfor %}
       </div>
       <button class="slider-btn slider-next" aria-label="Successiva">&#8594;</button>
     </div>
 
-    <!-- PLAYER AUDIO -->
     {% if page.audio %}
     <div class="audio-player" id="audio-player">
       <audio id="audio-el" src="{{ page.audio | relative_url }}" preload="metadata"></audio>
-
       <button class="ap-play" id="ap-play" aria-label="Play/Pause">
         <svg id="icon-play" viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
         <svg id="icon-pause" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
       </button>
-
       <div class="ap-info">
         <div class="ap-title">{{ page.title }} <span class="ap-anno">{{ page.anno }}</span></div>
         <div class="ap-waveform" id="ap-waveform">

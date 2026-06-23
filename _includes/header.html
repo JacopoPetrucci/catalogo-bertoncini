@@ -1,8 +1,14 @@
 <header class="site-header" role="banner">
   <div class="wrapper">
+    {% if page.layout == 'opera' %}
+    <a class="back-arrow" href="{{ '/' | relative_url }}" aria-label="Torna alla homepage">
+      &#8592;
+    </a>
+    {% else %}
     <a class="site-title" rel="author" href="{{ "/" | relative_url }}">
       <span class="site-title-main">{{ site.title }}</span>
       <span class="site-title-sub">{{ site.subtitle }}</span>
     </a>
+    {% endif %}
   </div>
 </header>
