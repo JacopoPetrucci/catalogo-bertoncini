@@ -30,7 +30,7 @@ layout: default
     <!-- PLAYER AUDIO -->
     {% if page.audio %}
     <div class="audio-player" id="audio-player">
-      <audio id="audio-el" src="{{ page.audio }}" preload="metadata"></audio>
+      <audio id="audio-el" src="{{ page.audio | relative_url }}" preload="metadata"></audio>
 
       <button class="ap-play" id="ap-play" aria-label="Play/Pause">
         <svg id="icon-play" viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>

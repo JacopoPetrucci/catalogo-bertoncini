@@ -350,27 +350,29 @@ body.home-page::before {
 .opera-page-inner {
   position: relative;
   z-index: 1;
-  max-width: 860px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 40px 30px 60px;
+  padding: 20px 30px 40px;
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 32px;
+  gap: 20px;
 }
+
 
 /* Rettangolo titolo */
 .opera-header-card {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
   gap: 3px;
   padding: 14px 20px;
   border: 0.5px solid rgba(255, 255, 255, 0.15);
   border-radius: 3px;
   position: relative;
   overflow: hidden;
-  text-align: right;
+  text-align: center;
+  margin-bottom: 0;
 }
 
 /* Slider partitura */
@@ -388,18 +390,12 @@ body.home-page::before {
   border: 0.5px solid rgba(255, 255, 255, 0.1);
 }
 
-.partitura-slide {
-  display: none;
-
-  &.active {
-    display: block;
-  }
-
-  img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
+.partitura-slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-height: 75vh;
+  object-fit: contain;
 }
 
 .slider-btn {
@@ -424,16 +420,16 @@ body.home-page::before {
 .audio-player {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
   background: rgba(0, 0, 0, 0.5);
   border: 0.5px solid rgba(255, 255, 255, 0.12);
   border-radius: 4px;
-  padding: 14px 18px;
+  padding: 8px 14px;
 }
 
 .ap-play {
-  width: 44px;
-  height: 44px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   background: #c8873a;
   border: none;
@@ -444,10 +440,6 @@ body.home-page::before {
   justify-content: center;
   flex-shrink: 0;
   transition: background 0.2s;
-
-  &:hover {
-    background: darken(#c8873a, 10%);
-  }
 }
 
 .ap-info {
@@ -474,7 +466,7 @@ body.home-page::before {
 
 .ap-waveform {
   position: relative;
-  height: 48px;
+  height: 36px;
   cursor: pointer;
   border-radius: 3px;
   overflow: hidden;
@@ -504,4 +496,22 @@ body.home-page::before {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 10px;
   color: rgba(240, 236, 228, 0.5);
+}
+
+.back-arrow {
+  font-size: 1.5rem;
+  color: #f0ece4;
+  text-decoration: none;
+  padding: 6px 12px;
+  border: 0.5px solid rgba(200, 135, 58, 0.3);
+  border-radius: 3px;
+  transition: background 0.2s, border-color 0.2s;
+  position: relative;
+  z-index: 1;
+
+  &:hover {
+    background: #c8873a;
+    border-color: #c8873a;
+    color: #000;
+  }
 }

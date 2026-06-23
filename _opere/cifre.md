@@ -6,6 +6,6 @@ anno: "1964–1967"
 partiture:
   - /catalogo-bertoncini/assets/opere/cifre/partitura_01.jpg
   - /catalogo-bertoncini/assets/opere/cifre/partitura_02.jpg
-audio: /catalogo-bertoncini/assets/opere/cifre/audio.wav
+audio: /catalogo-bertoncini/assets/opere/cifre/audio.mp3
 sfondo: /catalogo-bertoncini/assets/opere/cifre/sfondo_sfocato.jpg
 ---
