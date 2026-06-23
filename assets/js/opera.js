@@ -77,21 +77,56 @@ document.addEventListener('DOMContentLoaded', function () {
     iconPause.style.display = 'none';
   });
 
-  // Waveform simulata (barre casuali che rappresentano l'ampiezza)
+  // Waveform reale, derivata dal contenuto dell'audio
   const canvas = document.getElementById('waveform-canvas');
-  if (canvas) {
-    const ctx = canvas.getContext('2d');
-    const W = canvas.offsetWidth || 600;
-    const H = canvas.offsetHeight || 48;
-    canvas.width = W;
-    canvas.height = H;
-    const bars = 120;
-    const barW = W / bars - 1;
-    for (let i = 0; i < bars; i++) {
-      const h = Math.random() * H * 0.7 + H * 0.1;
+  if (canvas && waveformDiv) {
+    const drawWaveform = (peaks) => {
+      const dpr = window.devicePixelRatio || 1;
+      const W = waveformDiv.offsetWidth || 600;
+      const H = waveformDiv.offsetHeight || 48;
+      canvas.width = W * dpr;
+      canvas.height = H * dpr;
+      canvas.style.width = W + 'px';
+      canvas.style.height = H + 'px';
+      const ctx = canvas.getContext('2d');
+      ctx.scale(dpr, dpr);
+
+      const maxPeak = Math.max(...peaks) || 1;
+      const barW = W / peaks.length - 1;
       ctx.fillStyle = 'rgba(240, 236, 228, 0.35)';
-      ctx.fillRect(i * (barW + 1), (H - h) / 2, barW, h);
-    }
+      peaks.forEach((p, i) => {
+        const h = Math.max(2, (p / maxPeak) * H * 0.9);
+        ctx.fillRect(i * (barW + 1), (H - h) / 2, barW, h);
+      });
+    };
+
+    const computePeaks = (audioBuffer, bars) => {
+      const data = audioBuffer.getChannelData(0);
+      const blockSize = Math.floor(data.length / bars);
+      const peaks = [];
+      for (let i = 0; i < bars; i++) {
+        const start = i * blockSize;
+        let sum = 0;
+        for (let j = 0; j < blockSize; j++) {
+          sum += Math.abs(data[start + j]);
+        }
+        peaks.push(sum / blockSize);
+      }
+      return peaks;
+    };
+
+    fetch(audio.currentSrc || audio.src)
+      .then(res => res.arrayBuffer())
+      .then(buf => {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        const actx = new AudioCtx();
+        return actx.decodeAudioData(buf);
+      })
+      .then(audioBuffer => drawWaveform(computePeaks(audioBuffer, 150)))
+      .catch(() => {
+        // Fallback: barre piatte se l'analisi dell'audio non è disponibile
+        drawWaveform(new Array(150).fill(1));
+      });
   }
 
 });

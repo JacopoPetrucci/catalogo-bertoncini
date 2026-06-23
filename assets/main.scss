@@ -283,7 +283,8 @@
   color: #ffffff;
 }
 
-.page-content:has(.home-hero) {
+.page-content:has(.home-hero),
+.page-content:has(.opera-page) {
   padding: 0;
 }
 
@@ -412,7 +413,7 @@
   flex-direction: column;
   align-items: center;
   gap: 3px;
-  padding: 12px 30px;
+  padding: 16px 30px 12px;
   border-bottom: 0.5px solid rgba(255, 255, 255, 0.15);
   text-align: center;
   position: relative;
@@ -555,19 +556,43 @@
 }
 
 .back-arrow {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  z-index: 2;
   font-size: 1.5rem;
+  line-height: 1;
   color: #f0ece4;
   text-decoration: none;
   padding: 6px 12px;
   border: 0.5px solid rgba(200, 135, 58, 0.3);
   border-radius: 3px;
-  transition: background 0.2s, border-color 0.2s;
-  position: relative;
-  z-index: 1;
+  overflow: hidden;
+  transition: border-color 0.35s ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: #c8873a;
+    transition: left 0.35s ease;
+    z-index: 0;
+  }
+
+  span, &::after {
+    position: relative;
+    z-index: 1;
+  }
 
   &:hover {
-    background: #c8873a;
     border-color: #c8873a;
     color: #000;
+
+    &::before {
+      left: 0;
+    }
   }
 }
