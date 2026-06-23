@@ -106,7 +106,7 @@
   position: relative;
   min-height: calc(100vh - 73px);
   background-color: #000000;
-  background-image: url('../img/bertoncini.jpg');
+  background-image: url('/catalogo-bertoncini/assets/img/bertoncini.jpg');
   background-size: cover;
   background-position: center top;
 }
@@ -138,7 +138,7 @@
 .opera-card {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: flex-end;
   text-align: right;
   gap: 3px;
   width: 100%;
