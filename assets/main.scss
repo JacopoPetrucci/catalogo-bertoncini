@@ -10,6 +10,9 @@
 
 .page-wrapper-opera {
   background-color: #0a0a0a;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 
 .page-wrapper-home {
@@ -247,7 +250,7 @@
 
 .opera-card-title {
   font-family: 'Nunito', sans-serif;
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: #ffffff;
   position: relative;
@@ -383,10 +386,6 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  background-color: #0a0a0a;
   position: relative;
 }
 

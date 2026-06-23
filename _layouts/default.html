@@ -4,7 +4,7 @@
   {%- include head.html -%}
 
   <body>
-    <div class="{% if page.layout == 'home' %}page-wrapper-home{% endif %}{% if page.layout == 'opera' %}page-wrapper-opera{% endif %}">
+    <div class="{% if page.layout == 'home' %}page-wrapper-home{% endif %}{% if page.layout == 'opera' %}page-wrapper-opera{% endif %}"{% if page.layout == 'opera' and page.sfondo %} style="background-image: url('{{ page.sfondo | relative_url }}')"{% endif %}>
 
       {%- include header.html -%}
 
