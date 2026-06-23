@@ -9,7 +9,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding-left: 30px;
+  padding-left: 0px;
 }
 
 .site-header .wrapper {
@@ -17,6 +17,7 @@
   align-items: center;
   justify-content: space-between;
   padding-left: 0;
+  padding-right: 0;
 }
 
 .site-title {
@@ -48,6 +49,7 @@
   &:hover {
     color: #000000 !important;
     border-color: #ffffff;
+    text-decoration: none;
 
     &::before {
       left: 0;
