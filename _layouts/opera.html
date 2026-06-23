@@ -6,10 +6,11 @@ layout: default
   <div class="opera-page-overlay"></div>
 
   <div class="opera-header-card">
-    <span class="opera-card-title">{{ page.title }}</span>
-    <span class="opera-card-sub">{{ page.sottotitolo }}</span>
-    <span class="opera-card-anno">{{ page.anno }}</span>
-  </div>
+  <a class="back-arrow" href="{{ '/' | relative_url }}" aria-label="Torna alla homepage">&#8592;</a>
+  <span class="opera-card-title">{{ page.title }}</span>
+  <span class="opera-card-sub">{{ page.sottotitolo }}</span>
+  <span class="opera-card-anno">{{ page.anno }}</span>
+</div>
 
   <div class="opera-page-inner">
 

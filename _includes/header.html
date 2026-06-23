@@ -12,3 +12,14 @@
     {% endif %}
   </div>
 </header>
+
+{% unless page.is_opera %}
+<header class="site-header" role="banner">
+  <div class="wrapper">
+    <a class="site-title" rel="author" href="{{ "/" | relative_url }}">
+      <span class="site-title-main">{{ site.title }}</span>
+      <span class="site-title-sub">{{ site.subtitle }}</span>
+    </a>
+  </div>
+</header>
+{% endunless %}
