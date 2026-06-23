@@ -16,4 +16,4 @@ collections:
     output: true
     permalink: /opere/:name/
 
-header_pages:
+header_pages: []

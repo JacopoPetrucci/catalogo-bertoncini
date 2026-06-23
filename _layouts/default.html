@@ -3,22 +3,6 @@
 
   {%- include head.html -%}
 
-  <body>
-
-    {%- include header.html -%}
-
-    <main class="page-content" aria-label="Content">
-      {%- if page.full_width -%}
-        {{ content }}
-      {%- else -%}
-        <div class="wrapper">
-          {{ content }}
-        </div>
-      {%- endif -%}
-    </main>
-
-    {%- include footer.html -%}
-
-  </body>
+  <body class="{% if page.layout == 'home' %}home-page{% endif %}">
 
 </html>
