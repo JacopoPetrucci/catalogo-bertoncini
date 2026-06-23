@@ -16,9 +16,23 @@ body.home-page {
   background-color: #000000;
 }
    
+body.home-page::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0) 25%,
+    rgba(0, 0, 0, 0.5) 50%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  z-index: 0;
+  pointer-events: none;
+}
+
 .site-header {
   background-color: transparent;
-  border-top: 3px solid #c8873a;
+  border-top: 3px solid #000000;
   border-bottom: none;
   min-height: 70px;
   display: flex;
@@ -26,7 +40,7 @@ body.home-page {
   justify-content: flex-start;
   padding-left: 30px;
   position: relative;
-  z-index: 1;
+  z-index: 2;
 
   &::before {
     content: '';
@@ -119,23 +133,17 @@ body.home-page {
 .home-hero {
   position: relative;
   min-height: calc(100vh - 73px);
-  background: transparent
+  background: transparent;
+  z-index: 1;
 }
 
 .home-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to left,
-    rgba(0, 0, 0) 25%,
-    rgba(0, 0, 0, 0.5) 50%,
-    rgba(0, 0, 0, 0) 100%
-  );
+  display: none;
 }
 
 .home-content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   padding: 60px 30px;
 }
 
