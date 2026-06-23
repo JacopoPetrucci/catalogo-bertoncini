@@ -11,18 +11,3 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400&display=swap" rel="stylesheet">
 </head>
-
-<header class="site-header" role="banner">
-  <div class="wrapper">
-    {% if page.layout == 'opera' %}
-    <a class="back-arrow" href="{{ '/' | relative_url }}" aria-label="Torna alla homepage">
-      &#8592;
-    </a>
-    {% else %}
-    <a class="site-title" rel="author" href="{{ "/" | relative_url }}">
-      <span class="site-title-main">{{ site.title }}</span>
-      <span class="site-title-sub">{{ site.subtitle }}</span>
-    </a>
-    {% endif %}
-  </div>
-</header>

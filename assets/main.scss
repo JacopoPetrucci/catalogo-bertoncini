@@ -13,7 +13,7 @@
 }
 
 .page-wrapper-home {
-  background-image: url('/catalogo-bertoncini/assets/img/bertoncini.jpg');
+  background-image: url('{{ "/assets/img/bertoncini.jpg" | relative_url }}');
   background-size: cover;
   background-position: center top;
   background-color: #000000;
@@ -26,28 +26,6 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-  pointer-events: none;
-}
-
-body.home-page {
-  background-image: url('/catalogo-bertoncini/assets/img/bertoncini.jpg');
-  background-size: cover;
-  background-position: center top;
-  background-attachment: fixed;
-  background-color: #000000;
-}
-   
-body.home-page::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background: linear-gradient(
-    to left,
-    rgba(0, 0, 0) 25%,
-    rgba(0, 0, 0, 0.5) 50%,
-    rgba(0, 0, 0, 0) 100%
-  );
-  z-index: 0;
   pointer-events: none;
 }
 
