@@ -12,6 +12,13 @@
   padding-left: 30px;
 }
 
+.site-header .wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 0;
+}
+
 .site-title {
   display: inline-flex;
   flex-direction: column;
@@ -39,7 +46,7 @@
   }
 
   &:hover {
-    color: #ff0000 !important;
+    color: #000000 !important;
     border-color: #ffffff;
 
     &::before {
@@ -70,6 +77,11 @@
   color: #ffffff;
   position: relative;
   z-index: 1;
+}
+
+.site-title:hover .site-title-main,
+.site-title:hover .site-title-sub {
+  color: #000000;
 }
 
 .site-nav {
