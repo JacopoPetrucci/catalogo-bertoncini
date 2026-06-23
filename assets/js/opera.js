@@ -21,6 +21,61 @@ document.addEventListener('DOMContentLoaded', function () {
     if (nextBtn) nextBtn.style.display = 'none';
   }
 
+  // --- MATERIALI ---
+  const materialeButtons = document.querySelectorAll('.materiale-btn');
+  const modal = document.getElementById('materiale-modal');
+
+  if (materialeButtons.length && modal) {
+    const modalTitle = modal.querySelector('.materiale-modal-title');
+    const modalBody = modal.querySelector('.materiale-modal-body');
+    const modalClose = modal.querySelector('.materiale-modal-close');
+    const modalOverlay = modal.querySelector('.materiale-modal-overlay');
+
+    const closeModal = () => modal.classList.remove('open');
+
+    const openModal = (path, type, label) => {
+      modalTitle.textContent = label;
+      modalBody.innerHTML = '';
+
+      if (['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg'].includes(type)) {
+        const img = document.createElement('img');
+        img.src = path;
+        img.alt = label;
+        modalBody.appendChild(img);
+      } else if (type === 'pdf') {
+        const iframe = document.createElement('iframe');
+        iframe.src = path;
+        modalBody.appendChild(iframe);
+      } else if (['mp3', 'wav', 'ogg'].includes(type)) {
+        const audioEl = document.createElement('audio');
+        audioEl.src = path;
+        audioEl.controls = true;
+        modalBody.appendChild(audioEl);
+      } else {
+        const link = document.createElement('a');
+        link.href = path;
+        link.textContent = 'Apri file';
+        link.target = '_blank';
+        link.rel = 'noopener';
+        modalBody.appendChild(link);
+      }
+
+      modal.classList.add('open');
+    };
+
+    materialeButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        openModal(btn.dataset.path, btn.dataset.type, btn.dataset.label);
+      });
+    });
+
+    modalClose.addEventListener('click', closeModal);
+    modalOverlay.addEventListener('click', closeModal);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+  }
+
   // --- PLAYER AUDIO ---
   const audio = document.getElementById('audio-el');
   if (!audio) return;
