@@ -21,12 +21,6 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to left,
-    rgba(0, 0, 0) 25%,
-    rgba(0, 0, 0, 0.5) 50%,
-    rgba(0, 0, 0, 0.25) 100%
-  );
   z-index: 1;
   pointer-events: none;
 }
@@ -269,7 +263,8 @@ body.home-page::before {
   text-decoration: none !important;
   position: relative;
   overflow: hidden;
-  transition: border-color 0.3s ease;
+  transition: border-color 0.35s ease;
+  z-index: 2;
 
   &::before {
     content: '';
