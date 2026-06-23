@@ -1,4 +1,7 @@
 ---
+
+is_opera: true
+
 layout: opera
 title: "CIFRE"
 sottotitolo: "per pianoforti, uno o più esecutori"

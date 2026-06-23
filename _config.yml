@@ -17,3 +17,11 @@ collections:
     permalink: /opere/:name/
 
 header_pages: []
+
+defaults:
+  - scope:
+      path: ""
+      type: opere
+    values:
+      layout: opera
+      is_opera: true
