@@ -197,3 +197,7 @@
 .opera-card:hover .opera-card-title {
   color: #c8873a;
 }
+
+.page-content:has(.home-hero) {
+  padding: 0;
+}
