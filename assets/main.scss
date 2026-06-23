@@ -245,3 +245,48 @@ body.home-page::before {
 .page-content:has(.home-hero) {
   padding: 0;
 }
+
+.site-footer {
+  border-top: none;
+  padding: 12px 30px;
+  background-color: #000000;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 12px;
+}
+
+.footer-left,
+.footer-right {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 8px 14px;
+  border: 0.5px solid rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+}
+
+.footer-name {
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.05em;
+}
+
+.footer-email,
+.footer-desc {
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 200;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.08em;
+}
+
+.footer-right {
+  text-align: right;
+  max-width: 320px;
+}
