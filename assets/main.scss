@@ -325,3 +325,183 @@ body.home-page::before {
 .footer-box:hover .footer-desc {
   color: #000000;
 }
+
+/* =============================
+   SCHEDA OPERA
+   ============================= */
+
+.opera-page {
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-color: #0a0a0a;
+  position: relative;
+}
+
+.opera-page-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(2px);
+  z-index: 0;
+}
+
+.opera-page-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 40px 30px 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 32px;
+}
+
+/* Rettangolo titolo */
+.opera-header-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+  padding: 14px 20px;
+  border: 0.5px solid rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+  position: relative;
+  overflow: hidden;
+  text-align: right;
+}
+
+/* Slider partitura */
+.partitura-slider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+}
+
+.partitura-slides {
+  flex: 1;
+  overflow: hidden;
+  border-radius: 4px;
+  border: 0.5px solid rgba(255, 255, 255, 0.1);
+}
+
+.partitura-slide {
+  display: none;
+
+  &.active {
+    display: block;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+.slider-btn {
+  background: rgba(0, 0, 0, 0.6);
+  border: 0.5px solid rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+  color: #f0ece4;
+  font-size: 1.2rem;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  flex-shrink: 0;
+
+  &:hover {
+    background: #c8873a;
+    border-color: #c8873a;
+  }
+}
+
+/* Player audio */
+.audio-player {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 0.5px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  padding: 14px 18px;
+}
+
+.ap-play {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #c8873a;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s;
+
+  &:hover {
+    background: darken(#c8873a, 10%);
+  }
+}
+
+.ap-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ap-title {
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #f0ece4;
+  letter-spacing: 0.05em;
+}
+
+.ap-anno {
+  font-weight: 200;
+  opacity: 0.6;
+  margin-left: 8px;
+}
+
+.ap-waveform {
+  position: relative;
+  height: 48px;
+  cursor: pointer;
+  border-radius: 3px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+#waveform-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.ap-progress-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background: rgba(200, 135, 58, 0.35);
+  transition: width 0.1s linear;
+  pointer-events: none;
+}
+
+.ap-times {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: rgba(240, 236, 228, 0.5);
+}
