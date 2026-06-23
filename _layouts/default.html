@@ -4,12 +4,12 @@
   {%- include head.html -%}
 
   <body>
-    <div class="{% if page.layout == 'home' %}page-wrapper-home{% endif %}">
+    <div class="{% if page.layout == 'home' %}page-wrapper-home{% endif %}{% if page.layout == 'opera' %}page-wrapper-opera{% endif %}">
 
       {%- include header.html -%}
 
       <main class="page-content" aria-label="Content">
-        {%- if page.full_width -%}
+        {%- if page.full_width or page.layout == 'opera' -%}
           {{ content }}
         {%- else -%}
           <div class="wrapper">
