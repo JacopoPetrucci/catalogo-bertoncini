@@ -17,4 +17,3 @@ collections:
     permalink: /opere/:name/
 
 header_pages:
-  - index.markdown
