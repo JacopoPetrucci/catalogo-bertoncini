@@ -4,12 +4,27 @@ document.addEventListener('DOMContentLoaded', function () {
   const slides = document.querySelectorAll('.partitura-slide');
   const prevBtn = document.querySelector('.slider-prev');
   const nextBtn = document.querySelector('.slider-next');
+  const slider = document.querySelector('.partitura-slider');
   let current = 0;
+
+  // Segue il bordo destro reale dell'immagine attiva (varia in base
+  // alle dimensioni intrinseche dell'immagine e al layout disponibile)
+  function positionNextArrow() {
+    if (!nextBtn || !slider) return;
+    const activeImg = slider.querySelector('.partitura-slide.active img');
+    if (!activeImg) return;
+
+    const imgRect = activeImg.getBoundingClientRect();
+    const sliderRect = slider.getBoundingClientRect();
+    const left = imgRect.right - sliderRect.left - nextBtn.offsetWidth - 10;
+    nextBtn.style.left = Math.max(0, left) + 'px';
+  }
 
   function showSlide(n) {
     slides.forEach(s => s.classList.remove('active'));
     current = (n + slides.length) % slides.length;
     slides[current].classList.add('active');
+    positionNextArrow();
   }
 
   if (prevBtn) prevBtn.addEventListener('click', () => showSlide(current - 1));
@@ -19,6 +34,16 @@ document.addEventListener('DOMContentLoaded', function () {
   if (slides.length <= 1) {
     if (prevBtn) prevBtn.style.display = 'none';
     if (nextBtn) nextBtn.style.display = 'none';
+  } else {
+    const activeImg = slider && slider.querySelector('.partitura-slide.active img');
+    if (activeImg) {
+      if (activeImg.complete) {
+        positionNextArrow();
+      } else {
+        activeImg.addEventListener('load', positionNextArrow);
+      }
+    }
+    window.addEventListener('resize', positionNextArrow);
   }
 
   // --- MATERIALI ---
