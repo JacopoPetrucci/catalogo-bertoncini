@@ -616,6 +616,11 @@ html.gate-locked body > *:not(.access-gate) {
   height: 100%;
   overflow: hidden;
   border: none;
+  box-sizing: border-box;
+}
+
+.partitura-slider.has-materiali .partitura-slides {
+  padding-right: 190px;
 }
 
 .partitura-slide {
