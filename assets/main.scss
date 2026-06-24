@@ -806,6 +806,16 @@ html.gate-locked body > *:not(.access-gate) {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.materiale-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 0;
+  min-width: 0;
 }
 
 .materiale-modal-body img {
@@ -815,7 +825,7 @@ html.gate-locked body > *:not(.access-gate) {
 }
 
 .materiale-modal-body iframe {
-  width: min(80vw, 700px);
+  width: min(80vw, 500px);
   height: 70vh;
   border: none;
   background: #fff;

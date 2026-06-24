@@ -32,38 +32,50 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const closeModal = () => modal.classList.remove('open');
 
-    const openModal = (path, type, label) => {
-      modalBody.innerHTML = '';
-
+    const createItemEl = (path, type, label) => {
       if (['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg'].includes(type)) {
         const img = document.createElement('img');
         img.src = path;
         img.alt = label;
-        modalBody.appendChild(img);
-      } else if (type === 'pdf') {
+        return img;
+      }
+      if (type === 'pdf') {
         const iframe = document.createElement('iframe');
         iframe.src = path;
-        modalBody.appendChild(iframe);
-      } else if (['mp3', 'wav', 'ogg'].includes(type)) {
+        return iframe;
+      }
+      if (['mp3', 'wav', 'ogg'].includes(type)) {
         const audioEl = document.createElement('audio');
         audioEl.src = path;
         audioEl.controls = true;
-        modalBody.appendChild(audioEl);
-      } else {
-        const link = document.createElement('a');
-        link.href = path;
-        link.textContent = 'Apri file';
-        link.target = '_blank';
-        link.rel = 'noopener';
-        modalBody.appendChild(link);
+        return audioEl;
       }
+      const link = document.createElement('a');
+      link.href = path;
+      link.textContent = 'Apri file';
+      link.target = '_blank';
+      link.rel = 'noopener';
+      return link;
+    };
+
+    const openModal = (items, label) => {
+      modalBody.innerHTML = '';
+
+      items.forEach(item => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'materiale-item';
+        wrapper.appendChild(createItemEl(item.path, item.type, label));
+        modalBody.appendChild(wrapper);
+      });
 
       modal.classList.add('open');
     };
 
     materialeButtons.forEach(btn => {
       btn.addEventListener('click', () => {
-        openModal(btn.dataset.path, btn.dataset.type, btn.dataset.label);
+        let items = [];
+        try { items = JSON.parse(btn.dataset.items || '[]'); } catch (e) {}
+        openModal(items, btn.dataset.label);
       });
     });
 

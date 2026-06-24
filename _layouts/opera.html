@@ -30,7 +30,7 @@ layout: default
 
       <div class="materiali-side materiali-right">
         {% for m in page.materiali %}
-        <button class="materiale-btn" data-path="{{ m.path | relative_url }}" data-type="{{ m.type }}" data-label="{{ m.label }}"><span>{{ m.label }}</span></button>
+        <button class="materiale-btn" data-items="{{ m.items | jsonify | xml_escape }}" data-label="{{ m.label }}"><span>{{ m.label }}</span></button>
         {% endfor %}
       </div>
     </div>
