@@ -604,16 +604,26 @@ html.gate-locked body > *:not(.access-gate) {
 /* Slider partitura */
 .partitura-slider {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: stretch;
   gap: 0;
   position: relative;
   width: 100%;
   min-height: 0;
 }
 
+.partitura-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  padding: 8px 0;
+}
+
 .partitura-slides {
   flex: 1;
-  height: 100%;
+  min-height: 0;
   overflow: hidden;
   border: none;
   box-sizing: border-box;
@@ -649,10 +659,6 @@ html.gate-locked body > *:not(.access-gate) {
 }
 
 .slider-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 2;
   background: rgba(0, 0, 0, 0.5);
   border: 0.5px solid rgba(255, 255, 255, 0.2);
   border-radius: 3px;
@@ -668,14 +674,6 @@ html.gate-locked body > *:not(.access-gate) {
     border-color: #ffffff;
     color: #000;
   }
-}
-
-.slider-prev {
-  left: 10px;
-}
-
-.slider-next {
-  right: 10px;
 }
 
 /* Player audio */

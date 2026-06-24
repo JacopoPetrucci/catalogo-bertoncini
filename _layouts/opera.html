@@ -17,7 +17,10 @@ layout: default
 
     <div class="partitura-area">
       <div class="partitura-slider{% if page.materiali and page.materiali.size > 0 %} has-materiali{% endif %}">
-        <button class="slider-btn slider-prev" aria-label="Precedente">&#8592;</button>
+        <div class="partitura-nav">
+          <button class="slider-btn slider-prev" aria-label="Precedente">&#8592;</button>
+          <button class="slider-btn slider-next" aria-label="Successiva">&#8594;</button>
+        </div>
         <div class="partitura-slides">
           {% for img in page.partiture %}
           <div class="partitura-slide {% if forloop.first %}active{% endif %}">
@@ -25,7 +28,6 @@ layout: default
           </div>
           {% endfor %}
         </div>
-        <button class="slider-btn slider-next" aria-label="Successiva">&#8594;</button>
       </div>
 
       <div class="materiali-side materiali-right">
