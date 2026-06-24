@@ -547,7 +547,7 @@ html.gate-locked body > *:not(.access-gate) {
   position: absolute;
   top: 0;
   bottom: 0;
-  right: 60px;
+  right: 40px;
   z-index: 3;
   display: flex;
   flex-direction: column;
@@ -613,12 +613,18 @@ html.gate-locked body > *:not(.access-gate) {
 }
 
 .partitura-nav {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 12px;
-  flex-shrink: 0;
-  padding: 8px 0;
+  padding: 0 10px;
+  pointer-events: none;
+
+  .slider-btn {
+    pointer-events: auto;
+  }
 }
 
 .partitura-slides {
