@@ -4,6 +4,15 @@
   {%- include head.html -%}
 
   <body>
+    <div id="access-gate" class="access-gate">
+      <form class="access-gate-form">
+        <p class="access-gate-label">CODICE DI ACCESSO</p>
+        <input type="password" id="access-gate-input" class="access-gate-input" autocomplete="off" autocapitalize="off" spellcheck="false">
+        <button type="submit" class="access-gate-submit"><span>ENTRA</span></button>
+        <p class="access-gate-error" id="access-gate-error">Codice errato</p>
+      </form>
+    </div>
+
     <div class="{% if page.layout == 'home' %}page-wrapper-home{% endif %}{% if page.layout == 'opera' %}page-wrapper-opera{% endif %}"{% if page.layout == 'opera' and page.sfondo %} style="background-image: url('{{ page.sfondo | relative_url }}')"{% endif %}>
 
       {%- include header.html -%}
@@ -21,6 +30,8 @@
       {%- include footer.html -%}
 
     </div>
+
+    <script src="{{ '/assets/js/access-gate.js' | relative_url }}"></script>
   </body>
 
 </html>

@@ -8,6 +8,122 @@
    ============================= */
 
 
+/* Gate di accesso (soft, lato client) */
+.access-gate {
+  display: none;
+}
+
+html.gate-locked .access-gate {
+  display: flex;
+}
+
+html.gate-locked body > *:not(.access-gate) {
+  display: none !important;
+}
+
+.access-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+  background-color: #0a0a0a;
+}
+
+.access-gate-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 30px 36px;
+  border: 0.5px solid rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+
+.access-gate-label {
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #f0ece4;
+  margin: 0;
+}
+
+.access-gate-input {
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  color: #f0ece4;
+  background: transparent;
+  border: 0.5px solid rgba(255, 255, 255, 0.25);
+  border-radius: 3px;
+  padding: 8px 12px;
+  text-align: center;
+  width: 200px;
+
+  &:focus {
+    outline: none;
+    border-color: #ffffff;
+  }
+}
+
+.access-gate-submit {
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #f0ece4;
+  background: transparent;
+  border: 0.5px solid rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+  padding: 8px 18px;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  transition: border-color 0.35s ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    transition: left 0.35s ease;
+    z-index: 0;
+  }
+
+  span {
+    position: relative;
+    z-index: 1;
+  }
+
+  &:hover {
+    border-color: #ffffff;
+    color: #000;
+
+    &::before {
+      left: 0;
+    }
+  }
+}
+
+.access-gate-error {
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.05em;
+  color: #e0a0a0;
+  margin: 0;
+  display: none;
+
+  &.show {
+    display: block;
+  }
+}
+
 .page-wrapper-opera {
   background-color: #0a0a0a;
   background-size: cover;
