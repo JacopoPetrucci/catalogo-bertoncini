@@ -5,26 +5,44 @@ document.addEventListener('DOMContentLoaded', function () {
   const prevBtn = document.querySelector('.slider-prev');
   const nextBtn = document.querySelector('.slider-next');
   const slider = document.querySelector('.partitura-slider');
+  const partituraArea = document.querySelector('.partitura-area');
+  const materialiSide = document.querySelector('.materiali-side');
   let current = 0;
 
   // Segue il bordo destro reale dell'immagine attiva (varia in base
   // alle dimensioni intrinseche dell'immagine e al layout disponibile)
-  function positionNextArrow() {
-    if (!nextBtn || !slider) return;
-    const activeImg = slider.querySelector('.partitura-slide.active img');
-    if (!activeImg) return;
-
+  function positionNextArrow(activeImg) {
+    if (!nextBtn || !slider || !activeImg) return;
     const imgRect = activeImg.getBoundingClientRect();
     const sliderRect = slider.getBoundingClientRect();
     const left = imgRect.right - sliderRect.left - nextBtn.offsetWidth - 10;
     nextBtn.style.left = Math.max(0, left) + 'px';
   }
 
+  // Centra i bottoni materiali nello spazio vuoto tra il bordo destro
+  // dell'immagine attiva e il bordo destro dell'area partitura
+  function positionMaterialiSide(activeImg) {
+    if (!materialiSide || !partituraArea || !activeImg) return;
+    const areaRect = partituraArea.getBoundingClientRect();
+    const imgRect = activeImg.getBoundingClientRect();
+    const gapWidth = areaRect.right - imgRect.right;
+    const left = (imgRect.right - areaRect.left) + (gapWidth - materialiSide.offsetWidth) / 2;
+    materialiSide.style.left = Math.max(0, left) + 'px';
+    materialiSide.style.right = 'auto';
+  }
+
+  function positionOverlays() {
+    const activeImg = slider && slider.querySelector('.partitura-slide.active img');
+    if (!activeImg) return;
+    positionNextArrow(activeImg);
+    positionMaterialiSide(activeImg);
+  }
+
   function showSlide(n) {
     slides.forEach(s => s.classList.remove('active'));
     current = (n + slides.length) % slides.length;
     slides[current].classList.add('active');
-    positionNextArrow();
+    positionOverlays();
   }
 
   if (prevBtn) prevBtn.addEventListener('click', () => showSlide(current - 1));
@@ -34,17 +52,17 @@ document.addEventListener('DOMContentLoaded', function () {
   if (slides.length <= 1) {
     if (prevBtn) prevBtn.style.display = 'none';
     if (nextBtn) nextBtn.style.display = 'none';
-  } else {
-    const activeImg = slider && slider.querySelector('.partitura-slide.active img');
-    if (activeImg) {
-      if (activeImg.complete) {
-        positionNextArrow();
-      } else {
-        activeImg.addEventListener('load', positionNextArrow);
-      }
-    }
-    window.addEventListener('resize', positionNextArrow);
   }
+
+  const initialImg = slider && slider.querySelector('.partitura-slide.active img');
+  if (initialImg) {
+    if (initialImg.complete) {
+      positionOverlays();
+    } else {
+      initialImg.addEventListener('load', positionOverlays);
+    }
+  }
+  window.addEventListener('resize', positionOverlays);
 
   // --- MATERIALI ---
   const materialeButtons = document.querySelectorAll('.materiale-btn');
