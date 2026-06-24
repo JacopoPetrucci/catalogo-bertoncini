@@ -631,6 +631,10 @@ html.gate-locked body > *:not(.access-gate) {
   justify-content: center;
 }
 
+.partitura-slider.has-materiali .partitura-slide {
+  justify-content: flex-start;
+}
+
 .partitura-slide.active {
   display: flex;
 }
