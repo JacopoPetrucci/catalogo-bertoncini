@@ -3,7 +3,7 @@
 is_opera: true
 
 layout: opera
-title: "CIFRE"
+title: "CIFRE [1]"
 sottotitolo: "per pianoforti preparati, uno o più esecutori"
 anno: "1964–1967"
 partiture:

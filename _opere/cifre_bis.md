@@ -3,7 +3,7 @@
 is_opera: true
 
 layout: opera
-title: "CIFRE"
+title: "CIFRE [2]"
 sottotitolo: "per pianoforte preparato e nastro magnetico a quattro piste"
 anno: "1970–1973"
 partiture:
