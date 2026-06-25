@@ -822,19 +822,28 @@ html.gate-locked body > *:not(.access-gate) {
   cursor: pointer;
 }
 
+.materiale-modal-nav {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.materiale-modal-prev,
+.materiale-modal-next {
+  flex-shrink: 0;
+}
+
 .materiale-modal-body {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 16px;
+  min-width: 0;
 }
 
 .materiale-item {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex: 1 1 0;
   min-width: 0;
 }
 
@@ -858,6 +867,14 @@ html.gate-locked body > *:not(.access-gate) {
 .materiale-modal-body a {
   color: #f0ece4;
   text-decoration: underline;
+}
+
+.materiale-modal-counter {
+  align-self: center;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  color: rgba(240, 236, 228, 0.5);
 }
 
 .back-arrow {

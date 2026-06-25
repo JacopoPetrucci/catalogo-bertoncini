@@ -72,6 +72,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const modalBody = modal.querySelector('.materiale-modal-body');
     const modalClose = modal.querySelector('.materiale-modal-close');
     const modalOverlay = modal.querySelector('.materiale-modal-overlay');
+    const modalPrev = modal.querySelector('.materiale-modal-prev');
+    const modalNext = modal.querySelector('.materiale-modal-next');
+    const modalCounter = modal.querySelector('.materiale-modal-counter');
+
+    let currentItems = [];
+    let currentLabel = '';
+    let currentIndex = 0;
 
     const closeModal = () => modal.classList.remove('open');
 
@@ -101,16 +108,33 @@ document.addEventListener('DOMContentLoaded', function () {
       return link;
     };
 
-    const openModal = (items, label) => {
+    const renderCurrentItem = () => {
       modalBody.innerHTML = '';
+      const item = currentItems[currentIndex];
+      if (!item) return;
 
-      items.forEach(item => {
-        const wrapper = document.createElement('div');
-        wrapper.className = 'materiale-item';
-        wrapper.appendChild(createItemEl(item.path, item.type, label));
-        modalBody.appendChild(wrapper);
-      });
+      const wrapper = document.createElement('div');
+      wrapper.className = 'materiale-item';
+      wrapper.appendChild(createItemEl(item.path, item.type, currentLabel));
+      modalBody.appendChild(wrapper);
 
+      const multi = currentItems.length > 1;
+      modalPrev.style.display = multi ? '' : 'none';
+      modalNext.style.display = multi ? '' : 'none';
+      modalCounter.style.display = multi ? '' : 'none';
+      modalCounter.textContent = multi ? (currentIndex + 1) + ' / ' + currentItems.length : '';
+    };
+
+    const showItem = (n) => {
+      currentIndex = (n + currentItems.length) % currentItems.length;
+      renderCurrentItem();
+    };
+
+    const openModal = (items, label) => {
+      currentItems = items;
+      currentLabel = label;
+      currentIndex = 0;
+      renderCurrentItem();
       modal.classList.add('open');
     };
 
@@ -122,10 +146,15 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
 
+    modalPrev.addEventListener('click', () => showItem(currentIndex - 1));
+    modalNext.addEventListener('click', () => showItem(currentIndex + 1));
     modalClose.addEventListener('click', closeModal);
     modalOverlay.addEventListener('click', closeModal);
     document.addEventListener('keydown', (e) => {
+      if (!modal.classList.contains('open')) return;
       if (e.key === 'Escape') closeModal();
+      if (e.key === 'ArrowLeft') showItem(currentIndex - 1);
+      if (e.key === 'ArrowRight') showItem(currentIndex + 1);
     });
   }
 
